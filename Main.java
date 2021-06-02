@@ -21,8 +21,12 @@ public class Main {
         String ciudad1 = "";
         String ciudad2 = "";
         String distancia = "";
-        String [] partes;
+        String [] partes = new String [3];
+        ArrayList<String> origen = new ArrayList<String>();
+        ArrayList<String> destino = new ArrayList<String>();
+        ArrayList<String> dist = new ArrayList<String>();
 
+        
 
         //se utiliza un try catch para aseguranos que el archivo pueda ser leido correctamente 
         try{
@@ -36,12 +40,19 @@ public class Main {
 
                 String linea = scanner.nextLine(); //guardando los elementos (de cada linea) como variables
                 
-                //separando los elementos de cada linea
-                //separando cada linea por la coma
+                //separando cada linea por espacio
                 partes = linea.split(" ");
                 ciudad1 = partes[0];
                 ciudad2 = partes[1];
                 distancia = partes[2];
+
+                //agregando datos a las listas dinamicas
+                origen.add(ciudad1);
+                destino.add(ciudad2);
+                dist.add(distancia);
+
+                //mostrando las ciudades disponbiles y distancias
+                System.out.println("| Origen: " + ciudad1 + "| Destino: " + ciudad2 + "| Distancia: " + distancia );
 
             }
 
@@ -50,6 +61,9 @@ public class Main {
             // Se le advierte al usuario que el archivo no es existente, se termina el programa.
             System.out.println("El archivo de texto guategrafo.txt no ha sido encontrado.");
         }
+
+        System.out.println(Arrays.toString(partes));
+
 
          //haciendo un boolean iniciandolo en true
          boolean menu = true;
@@ -64,57 +78,89 @@ public class Main {
              System.out.println("(4) Salir del programa.");
  
              int opcion = 0;
- 
-         //creando un try catch para asegurar que se ingrese una opcion correcta entre 10 y 30
-         while(true){
-             try{
-                 System.out.print("Opcion: ");
-                 opcion = scan.nextInt();
-                 //(Programación defensiva)
-                 //Protección por si el usuario elige un número menor a uno o mayor a dos, seguirá pidiendo la opción. 
-                 if(opcion > 4 || opcion < 1){
-                     System.out.println("\nOpcion incorrecta, intenta de nuevo..");
-                 }
-                 //Si el usuario ingresa los datos correctos terminará el ciclo while
-                 else{break;}
-             }
-             //Si el usuario ingresa una letra regresará un mensaje de error. 
-             catch(Exception o){
-                 scan.nextLine();
-                 System.out.println("Caracter invalido! Intenta de nuevo..");
-             }
-         } 
+    
+            //creando un try catch para asegurar que se ingrese una opcion correcta entre 1 y 4
+            while(true){
+                try{
+                    System.out.print("Opcion: ");
+                    opcion = scan.nextInt();
+                    //(Programación defensiva)
+                    //Protección por si el usuario elige un número menor a uno o mayor a dos, seguirá pidiendo la opción. 
+                    if(opcion > 4 || opcion < 1){
+                        System.out.println("\nOpcion incorrecta, intenta de nuevo..");
+                    }
+                    //Si el usuario ingresa los datos correctos terminará el ciclo while
+                    else{break;}
+                }
+                //Si el usuario ingresa una letra regresará un mensaje de error. 
+                catch(Exception o){
+                    scan.nextLine();
+                    System.out.println("Caracter invalido! Intenta de nuevo..");
+                } 
+            } 
 
-         //iniciando opciones
+            //iniciando opciones
 
-         //iniciando con opcion 1, ver ruta mas corta
-         if(opcion==1) {
-             continue;
-         }
+            //iniciando con opcion 1, ver ruta mas corta
+            if(opcion==1) {
+                
+            System.out.println("\nSeleccione la ciudad de origen:");
 
-         //opcion2, ver centro de grafo
-         if(opcion==2) {
-             continue;
-         }
+            //for loop para imprimir las ciudades de la lista como una lsita numerada
+            for(int i = 0; i < origen.size(); i++) {
+                System.out.println(i + " " + origen.get(i));
+            }
 
-         //opcion3, modificar el grafo
-         if(opcion==3) {
+            int opcion2 = 0;
+            //creando un try catch para asegurar que se ingrese una opcion correcta entre 1 y el tamano de laa lista
+            while(true){
+                try{
+                    System.out.print("Origen: ");
+                    opcion2 = scan.nextInt();
+                    //(Programación defensiva)
+                    //Protección por si el usuario elige un número menor a uno o mayor a dos, seguirá pidiendo la opción. 
+                    if(opcion2 > origen.size() || opcion < 1){
+                        System.out.println("\nOpcion incorrecta, intenta de nuevo..");
+                    }
+                    //Si el usuario ingresa los datos correctos terminará el ciclo while
+                    else{break;}
+                }
+                //Si el usuario ingresa una letra regresará un mensaje de error. 
+                catch(Exception o){
+                    scan.nextLine();
+                    System.out.println("Caracter invalido! Intenta de nuevo..");
+                } 
+            } 
 
-         }
+            //definiendo la ciudad selccionada
+            String ciudadOrigen = origen.get(opcion2);
+            System.out.println(ciudadOrigen);
 
-         //opcion4, salir del programa
-        if(opcion==4) {
-            //imprimiendo mensajes de despedidda
-            System.out.println("\nGracias por utilizar el programa, vuelva pronto!");
-            System.out.println("Finalizando Programa...");
-            System.out.println("Programa Finalizado!\n");
-            //haciendo el boolean false pora que salga del ciclor
-            menu = false;
+            }
+
+            //opcion2, ver centro de grafo
+            if(opcion==2) {
+                continue;
+            }
+
+            //opcion3, modificar el grafo
+            if(opcion==3) {
+
+            }
+
+            //opcion4, salir del programa
+            if(opcion==4) {
+                //imprimiendo mensajes de despedidda
+                System.out.println("\nGracias por utilizar el programa, vuelva pronto!");
+                System.out.println("Finalizando Programa...");
+                System.out.println("Programa Finalizado!\n");
+                //haciendo el boolean false pora que salga del ciclor
+                menu = false;
+            }
+            
         }
-        
-    }
 
-    scan.close();
+        scan.close();
 
 }
 
