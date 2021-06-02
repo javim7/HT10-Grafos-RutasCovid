@@ -16,6 +16,7 @@ public class Main {
 
         //creando instancias
         Scanner scan = new Scanner(System.in);
+        Graph<String> grafo = new Grafo<>();
 
         //creanco variables
         String ciudad1 = "";
@@ -52,7 +53,12 @@ public class Main {
                 dist.add(distancia);
 
                 //mostrando las ciudades disponbiles y distancias
-                System.out.println("| Origen: " + ciudad1 + "| Destino: " + ciudad2 + "| Distancia: " + distancia );
+                System.out.println("Origen: " + ciudad1 + ", Destino: " + ciudad2 + ", Distancia: " + distancia );
+
+                //creando el grafo con los datos del .txt
+                grafo.add(ciudad1); //estos son los nodos
+                grafo.add(ciudad2);
+                grafo.addEdge(ciudad1, ciudad2, Integer.parseInt(distancia)); //esta es la arista
 
             }
 
@@ -62,6 +68,11 @@ public class Main {
             System.out.println("El archivo de texto guategrafo.txt no ha sido encontrado.");
         }
 
+
+        System.out.println("\n Matriz de adyacencia de los departamentos disponibles: ");
+        grafo.makeAdjacentMatrix();
+        System.out.print(grafo.showMatrix(0));
+        grafo.floydAlgorithm();
 
          //haciendo un boolean iniciandolo en true
          boolean menu = true;
@@ -133,7 +144,7 @@ public class Main {
 
                 //definiendo la ciudad de orginen selccionada
                 String ciudadOrigen = origen.get(opcion2-1);
-                
+
                 //eliminando la ciuadad de origen del listado de destino para que no se pueda seleccionar esa misma ciudad
                 destino.remove(ciudadOrigen);
 
@@ -173,6 +184,7 @@ public class Main {
                 destino.add(ciudadOrigen);
 
                 System.out.println("\nCiudad de origen: " +ciudadOrigen+ ", ciudad de destino: " +ciudadDestino);
+                grafo.floydAlgorithm();
 
 
             }
