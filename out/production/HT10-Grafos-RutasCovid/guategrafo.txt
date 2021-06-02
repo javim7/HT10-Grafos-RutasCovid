@@ -1,0 +1,6 @@
+Mixco Antigua 30
+Antigua Escuintla 25
+Escuintla SantaLucia 15
+SantaLucia Jutiapa 10
+Jutiapa Jalapa 5
+Jalapa Mixco 80

@@ -27,7 +27,7 @@ public class Main {
         ArrayList<String> dist = new ArrayList<String>();
 
         
-
+        System.out.println("\nInformacion sobre rutas:");
         //se utiliza un try catch para aseguranos que el archivo pueda ser leido correctamente 
         try{
 
@@ -61,8 +61,6 @@ public class Main {
             // Se le advierte al usuario que el archivo no es existente, se termina el programa.
             System.out.println("El archivo de texto guategrafo.txt no ha sido encontrado.");
         }
-
-        System.out.println(Arrays.toString(partes));
 
 
          //haciendo un boolean iniciandolo en true
@@ -103,38 +101,79 @@ public class Main {
 
             //iniciando con opcion 1, ver ruta mas corta
             if(opcion==1) {
-                
-            System.out.println("\nSeleccione la ciudad de origen:");
 
-            //for loop para imprimir las ciudades de la lista como una lsita numerada
-            for(int i = 0; i < origen.size(); i++) {
-                System.out.println(i + " " + origen.get(i));
-            }
+                System.out.println("\nSeleccione la ciudad de origen:");
 
-            int opcion2 = 0;
-            //creando un try catch para asegurar que se ingrese una opcion correcta entre 1 y el tamano de laa lista
-            while(true){
-                try{
-                    System.out.print("Origen: ");
-                    opcion2 = scan.nextInt();
-                    //(Programación defensiva)
-                    //Protección por si el usuario elige un número menor a uno o mayor a dos, seguirá pidiendo la opción. 
-                    if(opcion2 > origen.size() || opcion < 1){
-                        System.out.println("\nOpcion incorrecta, intenta de nuevo..");
-                    }
-                    //Si el usuario ingresa los datos correctos terminará el ciclo while
-                    else{break;}
+                //for loop para imprimir las ciudades de la lista como una lsita numerada
+                for(int i = 0; i < origen.size(); i++) {
+                    System.out.println((i+1) + " " + origen.get(i));
                 }
-                //Si el usuario ingresa una letra regresará un mensaje de error. 
-                catch(Exception o){
-                    scan.nextLine();
-                    System.out.println("Caracter invalido! Intenta de nuevo..");
-                } 
-            } 
 
-            //definiendo la ciudad selccionada
-            String ciudadOrigen = origen.get(opcion2);
-            System.out.println(ciudadOrigen);
+                int tamOrigen = origen.size();
+                int opcion2 = 0;
+                //creando un try catch para asegurar que se ingrese una opcion correcta entre 1 y el tamano de laa lista
+                while(true){
+                    try{
+                        System.out.print("Origen: ");
+                        opcion2 = scan.nextInt();
+                        //(Programación defensiva)
+                        //Protección por si el usuario elige un número menor a uno o mayor a dos, seguirá pidiendo la opción.
+                        if(opcion2 > tamOrigen || opcion2 < 1){
+                            System.out.println("\nOpcion incorrecta, intenta de nuevo..");
+                        }
+                        //Si el usuario ingresa los datos correctos terminará el ciclo while
+                        else{break;}
+                    }
+                    //Si el usuario ingresa una letra regresará un mensaje de error.
+                    catch(Exception o){
+                        scan.nextLine();
+                        System.out.println("Caracter invalido! Intenta de nuevo..");
+                    }
+                }
+
+                //definiendo la ciudad de orginen selccionada
+                String ciudadOrigen = origen.get(opcion2-1);
+                
+                //eliminando la ciuadad de origen del listado de destino para que no se pueda seleccionar esa misma ciudad
+                destino.remove(ciudadOrigen);
+
+                System.out.println("\nSeleccione la ciudad de destino:");
+
+                //for loop para imprimir las ciudades de la lista como una lsita numerada
+                for(int i = 0; i < destino.size(); i++) {
+                    System.out.println((i+1) + " " + destino.get(i));
+                }
+
+                int tamDestino = destino.size();
+                int opcion3 = 0;
+                //creando un try catch para asegurar que se ingrese una opcion correcta entre 1 y el tamano de laa lista
+                while(true){
+                    try{
+                        System.out.print("Destino: ");
+                        opcion3 = scan.nextInt();
+                        //(Programación defensiva)
+                        //Protección por si el usuario elige un número menor a uno o mayor a dos, seguirá pidiendo la opción.
+                        if(opcion3 > tamDestino || opcion3 < 1){
+                            System.out.println("\nOpcion incorrecta, intenta de nuevo..");
+                        }
+                        //Si el usuario ingresa los datos correctos terminará el ciclo while
+                        else{break;}
+                    }
+                    //Si el usuario ingresa una letra regresará un mensaje de error.
+                    catch(Exception o){
+                        scan.nextLine();
+                        System.out.println("Caracter invalido! Intenta de nuevo..");
+                    }
+                }
+
+                //definiendo la ciudad de orginen selccionada
+                String ciudadDestino = destino.get(opcion3-1);
+
+                //volviendo a agregar la ciudad de destino a su lista
+                destino.add(ciudadOrigen);
+
+                System.out.println("\nCiudad de origen: " +ciudadOrigen+ ", ciudad de destino: " +ciudadDestino);
+
 
             }
 
