@@ -1,9 +1,7 @@
 // A Java program for Floyd Warshall All Pairs Shortest
 // Path algorithm.
 // Extraido de: https://www.geeksforgeeks.org/floyd-warshall-algorithm-dp-16/ GeeksforGeeks
-import java.util.*;
-import java.lang.*;
-import java.io.*;
+
 
 
 class FloydAlgo
