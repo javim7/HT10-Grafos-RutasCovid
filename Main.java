@@ -74,7 +74,7 @@ public class Main {
         grafo.makeAdjacentMatrix();
         System.out.print(grafo.showMatrix(0));
         grafo.floydAlgorithm();
-        //floyd.floydWarshall(grafo.makeAdjacentMatrix());
+        floyd.floydWarshall(grafo.makeAdjacentMatrix());
 
          //haciendo un boolean iniciandolo en true
          boolean menu = true;
