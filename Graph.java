@@ -41,7 +41,7 @@ public interface Graph<V> {
      * @pre el grafo tiene que tener al menos 2 nodos
      * @pos crea la tabla de adyacencia
      */
-    public void makeAdjacentMatrix();
+    public Integer[][] makeAdjacentMatrix();
 
     /**
      *  Se encarga de conseguir el camino mas corto

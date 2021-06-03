@@ -118,7 +118,7 @@ public class Grafo<V> implements Graph<V> {
      * @pre el grafo tiene que tener al menos 2 nodos
      * @pos crea la tabla de adyacencia
      */
-    public void makeAdjacentMatrix() {
+    public Integer[][] makeAdjacentMatrix() {
         Edge<V> temp;
         adjacentMatrix = new Integer[index][index]; // Creando la matriz
         weightMatrix = new Integer[index][index];
@@ -139,6 +139,8 @@ public class Grafo<V> implements Graph<V> {
             adjacentMatrix[i][i] = 0;
             weightMatrix[i][i] = 0;
         }
+
+        return adjacentMatrix;
 
     }
 
@@ -331,5 +333,6 @@ public class Grafo<V> implements Graph<V> {
 
         return keys.get(position);
     }
+
 
 }
